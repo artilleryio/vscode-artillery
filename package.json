@@ -3,13 +3,33 @@
   "displayName": "artillery-vscode-extension",
   "description": "Visual Studio Code extension for Artillery",
   "version": "0.0.0",
+  "private": true,
+  "publisher": "Artillery",
+  "license": "MPL-2.0",
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
     "Testing",
-    "Linters"
+    "Linters",
+    "Other"
   ],
+  "icon": "assets/logo.png",
+  "galleryBanner": {
+    "color": "#161616",
+    "theme": "dark"
+  },
+  "keywords": [
+    "testing",
+    "load",
+    "artillery",
+    "script"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artilleryio/vscode-extension"
+  },
+  "homepage": "https://github.com/artilleryio/vscode-extension/blob/main/README.md",
   "activationEvents": [
     "workspaceContains:**/*.yml"
   ],
@@ -32,7 +52,8 @@
     "commands": [
       {
         "command": "artillery.runTest",
-        "title": "Run load test with Artillery"
+        "title": "Run load test with Artillery",
+        "shortTitle": "Run test"
       }
     ]
   },
