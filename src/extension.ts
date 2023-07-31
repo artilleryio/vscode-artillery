@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { ArtilleryCodeLensProvider } from './code-lens'
+import { ArtilleryCodeLensProvider } from './ArtilleryCodeLensProvider'
 
 interface ArtilleryConfig {
   testMatch: string
@@ -12,12 +12,8 @@ interface ArtilleryConfig {
 const ARTILLERY_JSON_SCHEMA_PATH =
   'file:///Users/kettanaito/Projects/artilleryio/tds/artillery.schema.json'
 
-// 'file:///Users/kettanaito/Projects/kettanaito/gh-action-test/artillery.schema.json'
-
 export async function activate(context: vscode.ExtensionContext) {
-  // Register JSON Schema for test script files.
-
-  async function registerJsonSchema() {
+  async function activateDependencies() {
     const vscodeYaml = vscode.extensions.getExtension('redhat.vscode-yaml')
 
     if (!vscodeYaml) {
@@ -25,10 +21,16 @@ export async function activate(context: vscode.ExtensionContext) {
     }
 
     await vscodeYaml.activate()
+  }
+  await activateDependencies()
 
+  // Register JSON Schema for test script files.
+  async function registerJsonSchema() {
     const config = vscode.workspace.getConfiguration()
     const artilleryConfig = config.get<ArtilleryConfig>('artillery')
 
+    // Update the user's global configuration to associate the
+    // Artillery test match glob with our JSON Schema.
     config
       .update(
         'yaml.schemas',
@@ -42,7 +44,6 @@ export async function activate(context: vscode.ExtensionContext) {
         console.error(error)
       })
   }
-
   await registerJsonSchema()
 
   // Register the run test command.
@@ -50,11 +51,15 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(
       'artillery.runTest',
       (testScriptPath: string) => {
-        console.log('Running tests...', testScriptPath)
-
         const terminal = vscode.window.createTerminal()
         terminal.show()
 
+        /**
+         * @todo Check if the Artillery CLI is installed.
+         * If not, prompt to install it.
+         * We can also have an "Install Artillery CLI" as a command,
+         * reusing it here.
+         */
         const runCommand = `artillery run ${testScriptPath}`
         terminal.sendText(runCommand, true)
       },

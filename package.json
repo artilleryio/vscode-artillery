@@ -2,7 +2,7 @@
   "name": "artillery-vscode-extension",
   "displayName": "artillery-vscode-extension",
   "description": "Visual Studio Code extension for Artillery",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -29,10 +29,6 @@
       }
     },
     "commands": [
-      {
-        "command": "artillery-vscode-extension.helloWorld",
-        "title": "Hello World"
-      },
       {
         "command": "artillery.runTest",
         "title": "Run load test with Artillery"

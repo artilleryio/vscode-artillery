@@ -4,8 +4,8 @@ export class ArtilleryCodeLensProvider implements vscode.CodeLensProvider {
   public provideCodeLenses(
     document: vscode.TextDocument,
   ): vscode.ProviderResult<vscode.CodeLens[]> {
-    const hasContent = !!document.getText()
-    if (!hasContent) {
+    // Ignore empty YAML documents—nothing to run.
+    if (!document.getText()) {
       return
     }
 
