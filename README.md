@@ -1,71 +1,39 @@
-# artillery-vscode-extension README
+[Artillery](https://www.artillery.io/) extension for Visual Studio Code for test script intellisense, validation, and running your load tests directly from the IDE.
 
-This is the README for your extension "artillery-vscode-extension". After writing up a brief description, we recommend including the following sections.
+## Installation
+
+Install the extension from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Artilleryio.vscode-artillery).
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Intellisense
 
-For example if there is an image subfolder under your extension project workspace:
+When writing test scripts with this extension installed, you can browse the list of all available test script options at any point in time. Take advantage of on-the-fly validation to write tests faster and avoid mistakes.
 
-\!\[feature X\]\(images/feature-x.png\)
+![Test script intellisense](assets/intellisense-suggestions.png)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+> Learn more about [Writing test scripts with Artillery](https://www.artillery.io/docs/reference/test-script).
 
-## Requirements
+Explore existing test scripts by hovering at any of its properties to get a short description, examples, and links to the documentation to learn more.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![Inline tooltips for existing properties](assets/intellisense-tooltips.png)
 
-## Extension Settings
+### Inline test runs
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Open any Artillery test script and click the "▶ Run load test" link at the top of the file to run that script in Visual Studio Code. This will spawn a new terminal and run the current test script using Artillery CLI.
 
-For example:
+## Configuration
 
-This extension contributes the following settings:
+### `testMatch: Array<string>`
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- Default: `**/*.yml`
 
-## Known Issues
+A list of glob pattern to treat as Artillery test scripts.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+For example, you can configure this extension to only treat `*.yml` files in a specific directory as test scripts:
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```json
+{
+  "vscode-artillery.testMatch": "./test/*.yml"
+}
+```
