@@ -27,7 +27,7 @@ export async function activate(context: vscode.ExtensionContext) {
   // Register JSON Schema for test script files.
   async function registerJsonSchema() {
     const config = vscode.workspace.getConfiguration()
-    const artilleryConfig = config.get<ArtilleryConfig>('artillery')
+    const artilleryConfig = config.get<ArtilleryConfig>('vscode-artillery')
 
     // Update the user's global configuration to associate the
     // Artillery test match glob with our JSON Schema.

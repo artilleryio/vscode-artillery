@@ -1,5 +1,5 @@
 {
-  "name": "vscode-extension",
+  "name": "vscode-artillery",
   "displayName": "Artillery: Distributed Load Testing",
   "description": "Visual Studio Code extension for Artillery",
   "version": "0.0.0",
@@ -27,9 +27,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/artilleryio/vscode-extension"
+    "url": "https://github.com/artilleryio/vscode-artillery"
   },
-  "homepage": "https://github.com/artilleryio/vscode-extension/blob/main/README.md",
+  "homepage": "https://github.com/artilleryio/vscode-artillery/blob/main/README.md",
   "activationEvents": [
     "workspaceContains:**/*.yml"
   ],
@@ -38,7 +38,7 @@
     "configuration": {
       "title": "Artillery",
       "properties": {
-        "artillery.testMatch": {
+        "vscode-artillery.testMatch": {
           "type": "string",
           "description": "Glob of the Artillery test scripts.",
           "default": "*.yml",
