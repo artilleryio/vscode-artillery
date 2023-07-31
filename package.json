@@ -1,6 +1,6 @@
 {
   "name": "artillery-vscode-extension",
-  "displayName": "artillery-vscode-extension",
+  "displayName": "Artillery: Distributed Load Testing",
   "description": "Visual Studio Code extension for Artillery",
   "version": "0.0.0",
   "private": true,
