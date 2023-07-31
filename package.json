@@ -1,10 +1,10 @@
 {
-  "name": "artillery-vscode-extension",
+  "name": "vscode-extension",
   "displayName": "Artillery: Distributed Load Testing",
   "description": "Visual Studio Code extension for Artillery",
   "version": "0.0.0",
   "private": true,
-  "publisher": "Artillery",
+  "publisher": "Artilleryio",
   "license": "MPL-2.0",
   "engines": {
     "vscode": "^1.80.0"
