@@ -1,5 +1,6 @@
 {
   "private": true,
+  "preview": true,
   "name": "vscode-artillery",
   "description": "Visual Studio Code extension for Artillery",
   "version": "0.0.0",
