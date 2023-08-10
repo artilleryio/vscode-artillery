@@ -5,12 +5,7 @@ interface ArtilleryConfig {
   testMatch: string
 }
 
-/**
- * @todo This should point to an absolute URL
- * of the deployed JSON Schema.
- */
-const ARTILLERY_JSON_SCHEMA_PATH =
-  'file:///Users/kettanaito/Projects/artilleryio/tds/artillery.schema.json'
+const ARTILLERY_JSON_SCHEMA_URL = 'https://www.artillery.io/schema.json'
 
 export async function activate(context: vscode.ExtensionContext) {
   async function activateDependencies() {
@@ -35,7 +30,7 @@ export async function activate(context: vscode.ExtensionContext) {
       .update(
         'yaml.schemas',
         {
-          [ARTILLERY_JSON_SCHEMA_PATH]: artilleryConfig?.testMatch,
+          [ARTILLERY_JSON_SCHEMA_URL]: artilleryConfig?.testMatch,
         },
         true,
       )
