@@ -1,0 +1,43 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: node
+          pull-request-title-pattern: 'ci: release ${version}'
+
+      - name: Checkout
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        if: ${{ steps.release.outputs.release_created }}
+        run: npm ci
+
+      - name: Publish
+        if: ${{ steps.release.outputs.release_created }}
+        run: npm run release
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          # Compose the next package version from the release action outputs.
+          # See: https://github.com/google-github-actions/release-please-action#outputs
+          NEXT_VERSION: '${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.minor.patch }}'
