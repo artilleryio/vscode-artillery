@@ -5,7 +5,8 @@
       "release-type": "node",
       "prerelease": true,
       "bump-minor-pre-major": true,
-      "pull-request-title-pattern": "ci: release ${version}"
+      "pull-request-title-pattern": "ci: release ${version}",
+      "include-component-in-tag": false
     }
   }
 }

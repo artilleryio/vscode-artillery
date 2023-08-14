@@ -39,4 +39,4 @@ jobs:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
           # Compose the next package version from the release action outputs.
           # See: https://github.com/google-github-actions/release-please-action#outputs
-          NEXT_VERSION: '${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.minor.patch }}'
+          NEXT_VERSION: '${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}'
