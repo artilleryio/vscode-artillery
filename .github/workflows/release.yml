@@ -16,10 +16,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          release-type: node
-          prerelease: true
-          bump-minor-pre-major: true
-          pull-request-title-pattern: 'ci: release ${version}'
+          command: manifest
 
       - name: Checkout
         if: ${{ steps.release.outputs.release_created }}
