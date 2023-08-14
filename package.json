@@ -3,7 +3,7 @@
   "preview": true,
   "name": "vscode-artillery",
   "description": "Visual Studio Code extension for Artillery",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "displayName": "Artillery: Distributed Load Testing",
   "publisher": "Artilleryio",
   "license": "MPL-2.0",
