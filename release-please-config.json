@@ -1,9 +1,11 @@
 {
   "bootstrap-sha": "850911545322d615083696b112be944d40311102",
-  ".": {
-    "release-type": "node",
-    "prerelease": true,
-    "bump-minor-pre-major": true,
-    "pull-request-title-pattern": "ci: release ${version}"
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "prerelease": true,
+      "bump-minor-pre-major": true,
+      "pull-request-title-pattern": "ci: release ${version}"
+    }
   }
 }
