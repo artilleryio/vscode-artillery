@@ -17,6 +17,8 @@ jobs:
         id: release
         with:
           release-type: node
+          prerelease: true
+          bump-minor-pre-major: true
           pull-request-title-pattern: 'ci: release ${version}'
 
       - name: Checkout
