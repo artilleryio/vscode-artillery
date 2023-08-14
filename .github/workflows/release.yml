@@ -17,6 +17,7 @@ jobs:
         id: release
         with:
           release-type: node
+          prerelease: true
           pull-request-title-pattern: 'ci: release ${version}'
 
       - name: Checkout
