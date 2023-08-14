@@ -4,6 +4,13 @@ All notable changes to the "artillery-vscode-extension" extension will be docume
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.5](https://github.com/artilleryio/vscode-artillery/compare/v0.0.4...v0.0.5) (2023-08-14)
+
+
+### Bug Fixes
+
+* set ["*.yml", "*.yaml"] as the default pattern ([#13](https://github.com/artilleryio/vscode-artillery/issues/13)) ([903055d](https://github.com/artilleryio/vscode-artillery/commit/903055df7a21d6fbcc05d474b8f86bf5113a4fd9))
+
 ## [0.0.4](https://github.com/artilleryio/vscode-artillery/compare/v0.0.3...v0.0.4) (2023-08-14)
 
 
