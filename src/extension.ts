@@ -1,11 +1,12 @@
 import * as vscode from 'vscode'
 import { ArtilleryCodeLensProvider } from './ArtilleryCodeLensProvider'
+import { ArtilleryScriptManager } from './ArtilleryScriptManager'
 
 interface ArtilleryConfig {
   testMatch: string
 }
 
-const ARTILLERY_JSON_SCHEMA_URL = 'https://www.artillery.io/schema.json'
+export const ARTILLERY_JSON_SCHEMA_URL = 'https://www.artillery.io/schema.json'
 
 export async function activate(context: vscode.ExtensionContext) {
   async function activateDependencies() {
@@ -19,27 +20,7 @@ export async function activate(context: vscode.ExtensionContext) {
   }
   await activateDependencies()
 
-  // Register JSON Schema for test script files.
-  async function registerJsonSchema() {
-    const config = vscode.workspace.getConfiguration()
-    const artilleryConfig = config.get<ArtilleryConfig>('vscode-artillery')
-
-    // Update the user's global configuration to associate the
-    // Artillery test match glob with our JSON Schema.
-    config
-      .update(
-        'yaml.schemas',
-        {
-          [ARTILLERY_JSON_SCHEMA_URL]: artilleryConfig?.testMatch,
-        },
-        true,
-      )
-      .then(undefined, (error) => {
-        console.error('Failed to configure JSON Schema.')
-        console.error(error)
-      })
-  }
-  await registerJsonSchema()
+  const scriptManager = new ArtilleryScriptManager(context)
 
   // Register the run test command.
   context.subscriptions.push(
@@ -55,12 +36,17 @@ export async function activate(context: vscode.ExtensionContext) {
     ),
   )
 
+  // Wait for the script manager to read the saved script paths
+  // from the YAML extension configuration. Code lens will then
+  // be registered for those saved paths.
+  await scriptManager.readConfigPathsPromise
+
   // Register the lens view to display "Run load test" lens
   // on top of test script YAML files.
   context.subscriptions.push(
     vscode.languages.registerCodeLensProvider(
       ['yaml', 'yml'],
-      new ArtilleryCodeLensProvider(),
+      new ArtilleryCodeLensProvider(scriptManager),
     ),
   )
 }
