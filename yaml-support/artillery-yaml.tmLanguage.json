@@ -1,0 +1,10 @@
+{
+  "name": "artillery-script",
+  "scopeName": "source.artillery-script",
+  "patterns": [
+    {
+      "comment": "source.yaml is defined in vscode core",
+      "include": "source.yaml"
+    }
+  ]
+}

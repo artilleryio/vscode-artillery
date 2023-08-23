@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import * as vscode from 'vscode'
 import { ArtilleryCodeLensProvider } from './ArtilleryCodeLensProvider'
 
@@ -5,19 +6,32 @@ interface ArtilleryConfig {
   testMatch: string
 }
 
-const ARTILLERY_JSON_SCHEMA_URL = 'https://www.artillery.io/schema.json'
+const ARTILLERY_JSON_SCHEMA_URL =
+  'file:///Users/kettanaito/Projects/artilleryio/artillery/packages/types/schema.json'
 
 export async function activate(context: vscode.ExtensionContext) {
-  async function activateDependencies() {
-    const vscodeYaml = vscode.extensions.getExtension('redhat.vscode-yaml')
+  const vscodeYaml = vscode.extensions.getExtension('redhat.vscode-yaml')
 
-    if (!vscodeYaml) {
-      throw new Error('redhat.vscode-yaml failed to install')
-    }
-
-    await vscodeYaml.activate()
+  if (!vscodeYaml) {
+    throw new Error('redhat.vscode-yaml failed to install')
   }
-  await activateDependencies()
+
+  await vscodeYaml.activate()
+
+  //
+
+  // const yamlConfigPath = vscode.Uri.joinPath(
+  //   vscodeYaml.extensionUri,
+  //   vscodeYaml.packageJSON.contributes.languages[0].configuration,
+  // )
+  // const yamlConfiguration = fs.readFileSync(yamlConfigPath.path, 'utf8')
+
+  // context.subscriptions.push(
+  //   vscode.languages.setLanguageConfiguration(
+  //     'artillery-script',
+  //     JSON.parse(yamlConfiguration),
+  //   ),
+  // )
 
   // Register JSON Schema for test script files.
   async function registerJsonSchema() {
@@ -30,14 +44,17 @@ export async function activate(context: vscode.ExtensionContext) {
       .update(
         'yaml.schemas',
         {
-          [ARTILLERY_JSON_SCHEMA_URL]: artilleryConfig?.testMatch,
+          [ARTILLERY_JSON_SCHEMA_URL]: '**/*.yml',
         },
         true,
       )
-      .then(undefined, (error) => {
-        console.error('Failed to configure JSON Schema.')
-        console.error(error)
-      })
+      .then(
+        () => console.log('YAML ACTIVATED!'),
+        (error) => {
+          console.error('Failed to configure JSON Schema.')
+          console.error(error)
+        },
+      )
   }
   await registerJsonSchema()
 
@@ -65,7 +82,7 @@ export async function activate(context: vscode.ExtensionContext) {
   // on top of test script YAML files.
   context.subscriptions.push(
     vscode.languages.registerCodeLensProvider(
-      ['yaml', 'yml'],
+      ['artillery-script'],
       new ArtilleryCodeLensProvider(),
     ),
   )
