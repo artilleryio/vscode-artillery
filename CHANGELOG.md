@@ -4,6 +4,13 @@ All notable changes to the "artillery-vscode-extension" extension will be docume
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.6](https://github.com/artilleryio/vscode-artillery/compare/v0.0.5...v0.0.6) (2023-08-25)
+
+
+### Bug Fixes
+
+* use npx to spawn artillery cli ([#17](https://github.com/artilleryio/vscode-artillery/issues/17)) ([b9eb6f0](https://github.com/artilleryio/vscode-artillery/commit/b9eb6f06a842880859967d0467d6a3ee6302fcc2))
+
 ## [0.0.5](https://github.com/artilleryio/vscode-artillery/compare/v0.0.4...v0.0.5) (2023-08-14)
 
 
