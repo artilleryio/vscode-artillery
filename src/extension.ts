@@ -49,13 +49,7 @@ export async function activate(context: vscode.ExtensionContext) {
         const terminal = vscode.window.createTerminal()
         terminal.show()
 
-        /**
-         * @todo Check if the Artillery CLI is installed.
-         * If not, prompt to install it.
-         * We can also have an "Install Artillery CLI" as a command,
-         * reusing it here.
-         */
-        const runCommand = `artillery run ${testScriptPath}`
+        const runCommand = `npx artillery run ${testScriptPath}`
         terminal.sendText(runCommand, true)
       },
     ),
