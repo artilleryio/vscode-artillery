@@ -86,7 +86,7 @@
     "commands": [
       {
         "command": "artillery.runTest",
-        "title": "Run load test with Artillery",
+        "title": "Run load test locally",
         "shortTitle": "Run test",
         "enablement": "editorIsOpen == true && editorLangId == 'yaml'"
       },

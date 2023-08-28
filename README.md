@@ -20,7 +20,7 @@ Explore existing test scripts by hovering at any of its properties to get a shor
 
 ### Inline test runs
 
-Open any Artillery test script and click the "▶ Run load test" link at the top of the file to run that script in Visual Studio Code. This will spawn a new terminal and run the current test script using Artillery CLI.
+Open any Artillery test script and click the "▶ Run locally" link at the top of the file to run that script in Visual Studio Code. This will spawn a new terminal and run the current test script using Artillery CLI.
 
 ## Configuration
 
