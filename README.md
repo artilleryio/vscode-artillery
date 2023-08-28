@@ -22,6 +22,10 @@ Explore existing test scripts by hovering at any of its properties to get a shor
 
 Open any Artillery test script and click the "▶ Run locally" link at the top of the file to run that script in Visual Studio Code. This will spawn a new terminal and run the current test script using Artillery CLI.
 
+Alternatively, open the Command Palette (Win: <kbd>CTRL+SHIFT+P</kbd>; MacOS: <kbd>CMD+SHIFT+P</kbd>) and choose the "Run load test locally" command from the Artillery Extension.
+
+> We don't currently support providing custom CLI options to the spawned Artillery commands.
+
 ## Configuration
 
 ### `include: Array<string>`
