@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import { ArtilleryCodeLensProvider } from './ArtilleryCodeLensProvider'
+import { ArtilleryCompletionProvider } from './CompletionProvider'
 
 interface ArtilleryConfig {
   testMatch: string
@@ -8,16 +9,16 @@ interface ArtilleryConfig {
 const ARTILLERY_JSON_SCHEMA_URL = 'https://www.artillery.io/schema.json'
 
 export async function activate(context: vscode.ExtensionContext) {
-  async function activateDependencies() {
-    const vscodeYaml = vscode.extensions.getExtension('redhat.vscode-yaml')
+  // async function activateDependencies() {
+  //   const vscodeYaml = vscode.extensions.getExtension('redhat.vscode-yaml')
 
-    if (!vscodeYaml) {
-      throw new Error('redhat.vscode-yaml failed to install')
-    }
+  //   if (!vscodeYaml) {
+  //     throw new Error('redhat.vscode-yaml failed to install')
+  //   }
 
-    await vscodeYaml.activate()
-  }
-  await activateDependencies()
+  //   await vscodeYaml.activate()
+  // }
+  // await activateDependencies()
 
   // Register JSON Schema for test script files.
   async function registerJsonSchema() {
@@ -67,6 +68,13 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerCodeLensProvider(
       ['yaml', 'yml'],
       new ArtilleryCodeLensProvider(),
+    ),
+  )
+
+  context.subscriptions.push(
+    vscode.languages.registerCompletionItemProvider(
+      ['yaml', 'yml', 'text'],
+      new ArtilleryCompletionProvider(),
     ),
   )
 }
