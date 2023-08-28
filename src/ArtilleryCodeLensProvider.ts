@@ -12,8 +12,11 @@ export class ArtilleryCodeLensProvider implements vscode.CodeLensProvider {
       return
     }
 
-    // Ignore YAML files that are not Artillery scripts.
-    if (!this.scriptManager.scriptPaths.has(document.uri.toString())) {
+    const documentUri = document.uri.toString()
+
+    // Ignore YAML files that are not Artillery scripts
+    // and are not explicitly listed in the "include" extension option by the user.
+    if (!this.scriptManager.hasScript(documentUri)) {
       return
     }
 
@@ -24,7 +27,7 @@ export class ArtilleryCodeLensProvider implements vscode.CodeLensProvider {
           title: '▶ Run load test',
           command: 'artillery.runTest',
           tooltip: 'Runs this test script using Artillery CLI',
-          arguments: [document.fileName],
+          arguments: [document.uri.path],
         },
       ),
     ]

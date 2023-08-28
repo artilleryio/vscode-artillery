@@ -24,16 +24,26 @@ Open any Artillery test script and click the "▶ Run load test" link at the top
 
 ## Configuration
 
-### `testMatch: Array<string>`
+### `include: Array<string>`
 
-- Default: `**/*.yml`
+- Default: `[]`
 
-A list of glob pattern to treat as Artillery test scripts.
-
-For example, you can configure this extension to only treat `*.yml` files in a specific directory as test scripts:
+A list of absolute file URIs or glob patterns to always treat as Artillery test scripts.
 
 ```json
 {
-  "vscode-artillery.testMatch": "./test/*.yml"
+  "artillery.include": ["file:///User/john/Projects/acme/load-tests/**/*.yml"]
+}
+```
+
+### `exclude: Array<string>`
+
+- Default: `[]`
+
+A list of absolute file URIs or glob patterns to ignore. The extension will not activate for the ignored files.
+
+```json
+{
+  "artillery.exclude": ["**/*.conf.yml"]
 }
 ```

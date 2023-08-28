@@ -7,14 +7,10 @@ interface YamlConfigSection {
   [schemaUrl: string]: Array<string>
 }
 
-// The path to the YAML extension in vscode config
-// where it stores its "schema: [patterns]" associations.
-const YAML_CONFIG_KEY = 'yaml.schemas'
-
 export class ArtilleryScriptManager {
   private analyzer: ArtilleryScriptAnalyzer
+  private scriptPaths = new Set<string>()
 
-  public scriptPaths = new Set<string>()
   public readConfigPathsPromise: Promise<void>
 
   constructor(private context: vscode.ExtensionContext) {
@@ -47,8 +43,8 @@ export class ArtilleryScriptManager {
 
   private async readConfigPaths(): Promise<Set<string>> {
     const yamlConfig = vscode.workspace
-      .getConfiguration()
-      .get<YamlConfigSection>(YAML_CONFIG_KEY)
+      .getConfiguration('yaml')
+      .get<YamlConfigSection>('schemas')
 
     if (
       !yamlConfig ||
@@ -62,7 +58,7 @@ export class ArtilleryScriptManager {
 
   private async writeConfigPaths() {
     const config = vscode.workspace.getConfiguration()
-    const yamlConfig = config.get<YamlConfigSection>(YAML_CONFIG_KEY) || {}
+    const yamlConfig = config.get<YamlConfigSection>('yaml.schemas') || {}
     const scriptFilesSet = new Set(this.scriptPaths)
 
     scriptFilesSet.delete('*.yaml')
@@ -72,13 +68,50 @@ export class ArtilleryScriptManager {
     // make sure any previously existing production schema associations are deleted.
     // This allows testing against arbitrary schema builds, like a locally built schema.
     if (ARTILLERY_JSON_SCHEMA_URL !== 'https://www.artillery.io/schema.json') {
-      delete yamlConfig['https://www.artillery.io/schema.json']
-      await config.update(YAML_CONFIG_KEY, yamlConfig)
+      Reflect.deleteProperty(yamlConfig, 'https://www.artillery.io/schema.json')
+      await config.update('yaml.schemas', yamlConfig)
     }
 
-    await config.update(YAML_CONFIG_KEY, {
+    await config.update('yaml.schemas', {
       ...yamlConfig,
       [ARTILLERY_JSON_SCHEMA_URL]: Array.from(scriptFilesSet),
     })
+  }
+
+  public async addScript(documentUri: string) {
+    await this.readConfigPathsPromise
+    this.scriptPaths.add(documentUri)
+    await this.writeConfigPaths()
+  }
+
+  public async deleteScript(documentUri: string) {
+    await this.readConfigPathsPromise
+
+    if (this.scriptPaths.has(documentUri)) {
+      this.scriptPaths.delete(documentUri)
+      await this.writeConfigPaths()
+    }
+  }
+
+  /**
+   * Deletes the entire Artillery JSON Schema key from the YAML configuration.
+   * Useful to reset the script analyzis to a clear state.
+   */
+  public async deleteAllScripts() {
+    const yamlConfig = vscode.workspace.getConfiguration('yaml')
+    const definedSchemas = yamlConfig.get<YamlConfigSection>('schemas')
+
+    if (!definedSchemas) {
+      return
+    }
+
+    await yamlConfig.update('schemas', {
+      ...yamlConfig,
+      [ARTILLERY_JSON_SCHEMA_URL]: [],
+    })
+  }
+
+  public hasScript(documentUri: string): boolean {
+    return this.scriptPaths.has(documentUri)
   }
 }
