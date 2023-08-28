@@ -102,7 +102,7 @@
       },
       {
         "command": "artillery.clearScriptCache",
-        "title": "Clear Artillery cache"
+        "title": "Clear extension cache"
       }
     ]
   },
