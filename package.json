@@ -43,9 +43,6 @@
     "url": "https://github.com/artilleryio/vscode-artillery"
   },
   "homepage": "https://github.com/artilleryio/vscode-artillery/blob/main/README.md",
-  "activationEvents": [
-    "workspaceContains:**/*.yml"
-  ],
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
@@ -54,14 +51,10 @@
         "vscode-artillery.testMatch": {
           "type": "array",
           "items": {
-            "type": "string",
-            "minItems": 1
+            "type": "string"
           },
           "description": "Glob of the Artillery test scripts.",
-          "default": [
-            "*.yaml",
-            "*.yml"
-          ],
+          "default": [],
           "examples": [
             "test.yml",
             "**/*.test.yml"
@@ -69,6 +62,27 @@
         }
       }
     },
+    "languages": [
+      {
+        "id": "artillery-script",
+        "aliases": [
+          "Artillery Test Script"
+        ],
+        "extensions": [],
+        "icon": {
+          "light": "./assets/logo.png",
+          "dark": "./assets/logo.png"
+        },
+        "configuration": "./yaml-support/language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "artillery-script",
+        "scopeName": "source.artillery-script",
+        "path": "./yaml-support/artillery-yaml.tmLanguage.json"
+      }
+    ],
     "commands": [
       {
         "command": "artillery.runTest",
