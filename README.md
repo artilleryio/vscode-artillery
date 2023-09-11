@@ -20,20 +20,34 @@ Explore existing test scripts by hovering at any of its properties to get a shor
 
 ### Inline test runs
 
-Open any Artillery test script and click the "▶ Run load test" link at the top of the file to run that script in Visual Studio Code. This will spawn a new terminal and run the current test script using Artillery CLI.
+Open any Artillery test script and click the "▶ Run locally" link at the top of the file to run that script in Visual Studio Code. This will spawn a new terminal and run the current test script using Artillery CLI.
+
+Alternatively, open the Command Palette (Win: <kbd>CTRL+SHIFT+P</kbd>; MacOS: <kbd>CMD+SHIFT+P</kbd>) and choose the "Run load test locally" command from the Artillery Extension.
+
+> We don't currently support providing custom CLI options to the spawned Artillery commands.
 
 ## Configuration
 
-### `testMatch: Array<string>`
+### `include: Array<string>`
 
-- Default: `**/*.yml`
+- Default: `[]`
 
-A list of glob pattern to treat as Artillery test scripts.
-
-For example, you can configure this extension to only treat `*.yml` files in a specific directory as test scripts:
+A list of absolute file URIs or glob patterns to always treat as Artillery test scripts.
 
 ```json
 {
-  "vscode-artillery.testMatch": "./test/*.yml"
+  "artillery.include": ["file:///User/john/Projects/acme/load-tests/**/*.yml"]
+}
+```
+
+### `exclude: Array<string>`
+
+- Default: `[]`
+
+A list of absolute file URIs or glob patterns to ignore. The extension will not activate for the ignored files.
+
+```json
+{
+  "artillery.exclude": ["**/*.conf.yml"]
 }
 ```

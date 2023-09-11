@@ -51,20 +51,34 @@
     "configuration": {
       "title": "Artillery",
       "properties": {
-        "vscode-artillery.testMatch": {
+        "artillery.include": {
           "type": "array",
           "items": {
-            "type": "string",
-            "minItems": 1
+            "type": "string"
           },
-          "description": "Glob of the Artillery test scripts.",
-          "default": [
-            "*.yaml",
-            "*.yml"
-          ],
+          "description": "File paths or globs to always treat as Artillery test scripts",
           "examples": [
-            "test.yml",
-            "**/*.test.yml"
+            [
+              "prod.yml"
+            ],
+            [
+              "load-tests/**/*.yaml"
+            ]
+          ]
+        },
+        "artillery.exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File paths or globs to never treat as Artillery test scripts",
+          "examples": [
+            [
+              "config.yml"
+            ],
+            [
+              "**/*.conf.yaml"
+            ]
           ]
         }
       }
@@ -72,8 +86,23 @@
     "commands": [
       {
         "command": "artillery.runTest",
-        "title": "Run load test with Artillery",
-        "shortTitle": "Run test"
+        "title": "Run load test locally",
+        "shortTitle": "Run test",
+        "enablement": "editorIsOpen == true && editorLangId == 'yaml'"
+      },
+      {
+        "command": "artillery.includeTestScript",
+        "title": "Include this file as Artillery test script",
+        "enablement": "editorIsOpen == true && editorLangId == 'yaml'"
+      },
+      {
+        "command": "artillery.excludeTestScript",
+        "title": "Exclude this file as Artillery test script",
+        "enablement": "editorIsOpen == true && editorLangId == 'yaml'"
+      },
+      {
+        "command": "artillery.clearScriptCache",
+        "title": "Clear extension cache"
       }
     ]
   },
@@ -82,6 +111,8 @@
   ],
   "devDependencies": {
     "@types/glob": "^8.1.0",
+    "@types/js-yaml": "^4.0.5",
+    "@types/micromatch": "^4.0.2",
     "@types/mocha": "^10.0.1",
     "@types/node": "20.2.5",
     "@types/vscode": "^1.80.0",
@@ -90,11 +121,14 @@
     "@vscode/test-electron": "^2.3.2",
     "@vscode/vsce": "^2.20.1",
     "eslint": "^8.41.0",
-    "glob": "^8.1.0",
     "mocha": "^10.2.0",
     "ts-loader": "^9.4.3",
     "typescript": "^5.1.3",
     "webpack": "^5.85.0",
     "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "micromatch": "^4.0.5"
   }
 }
