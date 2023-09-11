@@ -4,6 +4,20 @@ All notable changes to the "artillery-vscode-extension" extension will be docume
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.1.0](https://github.com/artilleryio/vscode-artillery/compare/v0.0.6...v0.1.0) (2023-09-11)
+
+
+### Features
+
+* add "include" and "exclude" extension options ([14422b8](https://github.com/artilleryio/vscode-artillery/commit/14422b81156452ccd8b90597a41baa78c544610b))
+* auto-detect artillery scripts ([4f81b79](https://github.com/artilleryio/vscode-artillery/commit/4f81b7905577a28d21e49cfca17288a7e61627c5))
+
+
+### Bug Fixes
+
+* rename "Run load test" to "Run locally" ([cfa2c74](https://github.com/artilleryio/vscode-artillery/commit/cfa2c74f07167d71a65679ecb6558719c21d5a5d))
+* rename clear cache extension command ([df5b027](https://github.com/artilleryio/vscode-artillery/commit/df5b0274c5fa84f0d39fff28a5602c2f020567ae))
+
 ## [0.0.6](https://github.com/artilleryio/vscode-artillery/compare/v0.0.5...v0.0.6) (2023-08-25)
 
 
