@@ -4,6 +4,13 @@ All notable changes to the "artillery-vscode-extension" extension will be docume
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.1.1](https://github.com/artilleryio/vscode-artillery/compare/v0.1.0...v0.1.1) (2023-09-12)
+
+
+### Bug Fixes
+
+* pull assets from artillery website ([#20](https://github.com/artilleryio/vscode-artillery/issues/20)) ([b041e35](https://github.com/artilleryio/vscode-artillery/commit/b041e35bed4c04e7d20fc34d6af0624fdb07e4c2))
+
 ## [0.1.0](https://github.com/artilleryio/vscode-artillery/compare/v0.0.6...v0.1.0) (2023-09-11)
 
 
