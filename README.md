@@ -10,15 +10,15 @@ Install the extension from [Visual Studio Marketplace](https://marketplace.visua
 
 When writing test scripts with this extension installed, you can browse the list of all available test script options at any point in time. Take advantage of on-the-fly validation to write tests faster and avoid mistakes.
 
-**Tip: Use `ctrl+space` at any point to show all available options at that level of the script.**
+**Tip: Use <kbd>CTRL+SPACE</kbd> at any point to show all available options at that level of the script.**
 
-![Test script intellisense](./assets/intellisense-suggestions.png)
+![Test script intellisense](https://www.artillery.io/images/vscode-intellisense-suggestions.png)
 
 > Learn more about [Writing test scripts with Artillery](https://www.artillery.io/docs/reference/test-script).
 
 Explore existing test scripts by hovering at any of its properties to get a short description, examples, and links to the documentation to learn more.
 
-![Inline tooltips for existing properties](./assets/intellisense-tooltips.png)
+![Inline tooltips for existing properties](https://www.artillery.io/images/vscode-intellisense-tooltips.png)
 
 ### Inline test runs
 
