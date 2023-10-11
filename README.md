@@ -1,4 +1,6 @@
-[Artillery](https://www.artillery.io/) extension for Visual Studio Code for test script intellisense, validation, and running your load tests directly from the IDE.
+# Artillery for VS Code
+
+The [Artillery](https://www.artillery.io/) extension for VS Code adds IntelliSense with autocomplete and validation for Artillery test scripts, inline documentation, and the ability to run a load test directly from VS Code.
 
 ## Installation
 
@@ -6,27 +8,28 @@ Install the extension from [Visual Studio Marketplace](https://marketplace.visua
 
 ## Features
 
-### Intellisense
+### Autocomplete
 
-When writing test scripts with this extension installed, you can browse the list of all available test script options at any point in time. Take advantage of on-the-fly validation to write tests faster and avoid mistakes.
+Write scripts faster and avoid mistakes with autocomplete for Artillery test scripts.
 
-**Tip: Use <kbd>CTRL+SPACE</kbd> at any point to show all available options at that level of the script.**
+Press <kbd>Control+Space</kbd> to show all available autocomplete options.
 
-![Test script intellisense](https://www.artillery.io/images/vscode-intellisense-suggestions.png)
+![Test script IntelliSense](https://www.artillery.io/images/vscode-intellisense-suggestions.png)
 
-> Learn more about [Writing test scripts with Artillery](https://www.artillery.io/docs/reference/test-script).
+### Inline documentation
 
-Explore existing test scripts by hovering at any of its properties to get a short description, examples, and links to the documentation to learn more.
+Hover over configuration options in your script to get a short description and a link to extended documentation for it.
 
 ![Inline tooltips for existing properties](https://www.artillery.io/images/vscode-intellisense-tooltips.png)
 
-### Inline test runs
+### Run test from VS Code
 
-Open any Artillery test script and click the "▶ Run locally" link at the top of the file to run that script in Visual Studio Code. This will spawn a new terminal and run the current test script using Artillery CLI.
+Click **▶ Run locally** at the top of the file to run the test script. This opens a new terminal inside VS Code and executes `artillery run` on the current script.
 
-Alternatively, open the Command Palette (Win: <kbd>CTRL+SHIFT+P</kbd>; MacOS: <kbd>CMD+SHIFT+P</kbd>) and choose the "Run load test locally" command from the Artillery Extension.
+You can also open the Command Palette with <kbd>Control+Shift+P</kbd> (or `Command+Shift+P` on MacOS) and choose **Run load test locally** command.
 
-> We don't currently support providing custom CLI options to the spawned Artillery commands.
+> [!NOTE]
+> This command executes `artillery run` on the script with no other arguments. If you need to use additional command-line flags, you will need to run `artillery` directly from a terminal.
 
 ## Configuration
 
