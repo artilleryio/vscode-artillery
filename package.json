@@ -2,9 +2,9 @@
   "private": true,
   "preview": true,
   "name": "vscode-artillery",
-  "description": "Visual Studio Code extension for Artillery",
+  "description": "Syntax checking, autocomplete and inline help for Artillery scripts in VS Code",
   "version": "0.1.1",
-  "displayName": "Artillery: Distributed Load Testing",
+  "displayName": "Artillery for VS Code",
   "publisher": "Artilleryio",
   "license": "MPL-2.0",
   "engines": {
