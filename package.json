@@ -3,7 +3,7 @@
   "preview": true,
   "name": "vscode-artillery",
   "description": "Syntax checking, autocomplete and inline help for Artillery scripts in VS Code",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "displayName": "Artillery for VS Code",
   "publisher": "Artilleryio",
   "license": "MPL-2.0",
