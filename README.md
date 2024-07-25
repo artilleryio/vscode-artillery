@@ -14,13 +14,13 @@ Write scripts faster and avoid mistakes with autocomplete for Artillery test scr
 
 Press <kbd>Control+Space</kbd> to show all available autocomplete options.
 
-![Test script IntelliSense](https://www.artillery.io/images/vscode-intellisense-suggestions.png)
+![Test script IntelliSense](./assets/vscode-intellisense-suggestions.png)
 
 ### Inline documentation
 
 Hover over configuration options in your script to get a short description and a link to extended documentation for it.
 
-![Inline tooltips for existing properties](https://www.artillery.io/images/vscode-intellisense-tooltips.png)
+![Inline tooltips for existing properties](./assets/vscode-intellisense-tooltips.png)
 
 ### Run test from VS Code
 
